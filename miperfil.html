@@ -1,0 +1,87 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Mi Perfil
+{% endblock %}
+
+{% block main %}
+
+<h2 class="mb-3">Mi Perfil</h2>
+
+<!-- Botones -->
+<div class="mb-4">
+    <button class="btn btn-primary mb-2" onclick="toggle('passwordForm')">
+        Cambiar contraseña
+    </button>
+
+    <button class="btn btn-secondary mb-2" onclick="toggle('eventoForm')">
+        Crear evento
+    </button>
+
+    <button class="btn btn-success mb-2" onclick="toggle('propuestaForm')">
+        Crear propuesta
+    </button>
+</div>
+
+
+<!-- FORMULARIO CAMBIAR CONTRASEÑA -->
+<div id="passwordForm" style="display:none;" class="p-3 border rounded">
+    <h4>Cambiar contraseña</h4>
+    <form action="/changepassword" method="post">
+        <div class="mb-2">
+            <input name="current" placeholder="Contraseña actual"
+                   type="password" class="form-control" required>
+        </div>
+        <div class="mb-2">
+            <input name="new" placeholder="Nueva contraseña"
+                   type="password" class="form-control" required>
+        </div>
+        <div class="mb-2">
+            <input name="confirmation" placeholder="Confirmar nueva contraseña"
+                   type="password" class="form-control" required>
+        </div>
+        <button class="btn btn-primary" type="submit">Cambiar</button>
+    </form>
+</div>
+
+
+<!-- FORMULARIO CREAR EVENTO -->
+<div id="eventoForm" style="display:none;" class="p-3 border rounded mt-4">
+    <h4>Crear evento</h4>
+
+    <form action="/crear_evento" method="post">
+        <input name="titulo" class="form-control mb-2" placeholder="Título" required>
+        <input name="fecha" type="date" class="form-control mb-2" required>
+        <textarea name="descripcion" class="form-control mb-2"
+                  placeholder="Descripción del evento"></textarea>
+        <button class="btn btn-secondary">Crear evento</button>
+    </form>
+</div>
+
+
+<!-- FORMULARIO CREAR PROPUESTA -->
+<div id="propuestaForm" style="display:none;" class="p-3 border rounded mt-4">
+    <h4>Crear propuesta</h4>
+
+    <form action="/crear_propuesta" method="post">
+        <input name="titulo" class="form-control mb-2" placeholder="Título" required>
+        <textarea name="contenido" class="form-control mb-2"
+                  placeholder="Explica tu propuesta" required></textarea>
+        <button class="btn btn-success">Enviar propuesta</button>
+    </form>
+</div>
+
+
+<script>
+function toggle(id) {
+    const forms = ["passwordForm", "eventoForm", "propuestaForm"];
+
+    forms.forEach(f => {
+        if (f !== id) document.getElementById(f).style.display = "none";
+    });
+
+    const target = document.getElementById(id);
+    target.style.display = (target.style.display === "none") ? "block" : "none";
+}
+</script>
+{% endblock %}

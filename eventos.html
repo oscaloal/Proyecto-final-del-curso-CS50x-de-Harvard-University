@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Eventos
+{% endblock %}
+
+{% block main %}
+<h2> ¿Qué está sucediendo hoy en Híjar - {{ hoy }}?</h2>
+
+<div class="mt-4">
+    {% for evento in eventos %}
+        <div class="card mb-4">
+            <div class="card-body">
+
+                <h4 class="card-title">{{ evento.titulo }}</h4>
+                <p class="card-text">{{ evento.descripcion }}</p>
+
+                <small class="text-muted">Fecha: {{ evento.fecha }}</small>
+
+                <!-- ⬇ AQUÍ SALE EL CREADOR ABAJO DERECHA -->
+                <div class="text-end mt-2">
+                    <span class="badge text-bg-secondary">
+                        Creado por: {{ evento.usuario }}
+                    </span>
+                </div>
+
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

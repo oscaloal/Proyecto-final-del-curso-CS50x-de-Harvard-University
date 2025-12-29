@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Regístrese.
+{% endblock %}
+
+{% block main %}
+    <form action="/registro" method="post">
+        <div>
+            <input autocomplete="off" autofocus name="usuario" placeholder="Usuario" type="text" required>
+        </div>
+        <div>
+            <input name="password" placeholder="Contraseña" type="password" required>
+        </div>
+        <div>
+            <input name="confirmation" placeholder="Repita la contraseña" type="password" required>
+        </div>
+        <button type="submit">Registrarse</button>
+    </form>
+    <p>¿Tienes ya cuenta? <a href="/login">Accede rápido</a>.</p>
+{% endblock %}
